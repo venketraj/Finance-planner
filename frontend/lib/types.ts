@@ -12,6 +12,7 @@ export interface Profile {
   expected_inflation: number;
   expected_return: number;
   fire_target_annual_expense: number | null;
+  fire_target: number | null;
   currency: string;
   created_at: string;
   updated_at: string;
