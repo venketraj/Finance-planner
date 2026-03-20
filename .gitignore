@@ -19,6 +19,9 @@ node_modules/
 .next/
 out/
 
+# Claude Code
+.claude/
+
 # IDE
 .vscode/
 .idea/
