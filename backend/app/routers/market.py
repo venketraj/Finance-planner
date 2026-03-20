@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from functools import lru_cache
+import time
 from typing import Any, Optional
 
 import yfinance as yf
@@ -18,6 +18,10 @@ from app.dependencies import CurrentUser, SupabaseClient
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/market", tags=["market"])
+
+# Simple in-memory cache: symbol -> (timestamp, data)
+_CACHE: dict[str, tuple[float, dict]] = {}
+_CACHE_TTL = 900  # 15 minutes
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -93,9 +97,16 @@ def _build_summary(symbol: str, info: dict) -> dict:
 
 
 async def _get_info(symbol: str) -> dict:
+    now = time.time()
+    if symbol in _CACHE:
+        ts, data = _CACHE[symbol]
+        if now - ts < _CACHE_TTL:
+            return data
     loop = asyncio.get_event_loop()
     info = await loop.run_in_executor(None, _fetch_ticker_info, symbol)
-    return _build_summary(symbol, info)
+    result = _build_summary(symbol, info)
+    _CACHE[symbol] = (now, result)
+    return result
 
 
 # ── Endpoints ────────────────────────────────────────────────────────────────
