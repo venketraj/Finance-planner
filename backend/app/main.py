@@ -3,9 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Finance Planner API", version="0.1.0")
 
+import os
+
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    os.getenv("FRONTEND_URL", ""),
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[o for o in ALLOWED_ORIGINS if o],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
