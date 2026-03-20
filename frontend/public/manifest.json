@@ -1,0 +1,37 @@
+{
+  "name": "FinancePlanner – FIRE Tracker",
+  "short_name": "FinancePlanner",
+  "description": "Personal Finance & FIRE (Financial Independence, Retire Early) Tracker",
+  "start_url": "/protected/dashboard",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/protected/dashboard",
+      "description": "View your financial dashboard"
+    },
+    {
+      "name": "Portfolio",
+      "url": "/protected/portfolio",
+      "description": "View your investment portfolio"
+    }
+  ],
+  "categories": ["finance", "productivity"]
+}

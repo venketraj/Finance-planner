@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(python -c \"import fitz; print\\(''pymupdf OK''\\)\")",
+      "Bash(\"G:/finance_planner/backend/app/routers/holdings.py\":*)",
+      "Bash(xargs grep:*)",
+      "Bash(find /g/finance_planner -type d -not -path */.venv/* -not -path */node_modules/* -not -path */.next/* -not -path */__pycache__/*)",
+      "Bash(grep -E \"\\\\.py$|^d\")",
+      "Bash(grep -E \"\\\\.js$|\\\\.py$|^d\")",
+      "Bash(find /g/finance_planner -type f \\\\\\(-name *.tmp -o -name *.temp -o -name *test*.py -o -name *sample* \\\\\\))",
+      "Bash(find \"g:/finance_planner/backend\" -type d -name \"__pycache__\" -exec rm -rf {} +)",
+      "Bash(ls -la /g/finance_planner/frontend/*.css)"
+    ]
+  }
+}
